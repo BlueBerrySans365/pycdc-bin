@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-
-      - name: Display structure of downloaded files
-        run: ls -R
       - name: Configure and Build
         run: |
           mkdir build && cd build
@@ -24,3 +18,11 @@ jobs:
         run: |
           cd build
           make check
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          # Artifact name
+          name: bruh
+          # A file, directory or wildcard pattern that describes what to upload
+          path: .
+          # The desired behavior if no files are found using the provided path.
